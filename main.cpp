@@ -2,7 +2,6 @@
 
 #include <vector>
 
-/* An example of Lambda expressions */
 void lambda_test(const std::vector<int> &vn, void(*func)(int)) {
 
 	for (int v : vn) {
@@ -29,12 +28,13 @@ void print_numbers() {
 
 int main() {
 	
-	std::cout << "This small programs demenstrats the use of modern C++ concepts\n";
+	std::cout << "This small program demenstrats the use of modern C++ concepts\n";
 
 	print_numbers();
 
 	std::vector<int> vn = {1,2,3,4,5,6,7,8,9,10,11,12};
 	std::cout << "Printing the values of a vector collection...\n";
+	/* An example of a Lambda expressions */
 	lambda_test(vn, [](int v) {std::cout << "Value: " << v << "\n";});
 
 	return 1;

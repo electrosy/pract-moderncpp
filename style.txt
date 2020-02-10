@@ -1,0 +1,12 @@
+UpperCamelCase : Classes
+
+lowerCamelCase : Member Functions
+
+snake_case : helper functions
+
+All custom functions and classes go into a custom namespace.
+
+Open brackets at the end of the line. {
+	source code follows at the next line, 
+
+set tabstop=4, replace all tabs with spaces

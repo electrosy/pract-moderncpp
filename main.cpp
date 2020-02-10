@@ -37,5 +37,6 @@ int main() {
 	/* An example of a Lambda expressions */
 	lambda_test(vn, [](int v) {std::cout << "Value: " << v << "\n";});
 
+
 	return 1;
 }

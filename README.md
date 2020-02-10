@@ -16,8 +16,8 @@ Move Semantics
 
 ## Modern C++ Utilities
 
-<random>
-<chrono>
+random
+chrono
 
 std::to_chars() -> c++17 // std::to_string() -> c++11
 

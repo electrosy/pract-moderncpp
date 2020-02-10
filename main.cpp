@@ -12,7 +12,7 @@ void print_numbers() {
 		std::cout << x << '\n';
 	}
 
-	std::cout << "Printing a list of numbers that have already been defined using auto deduction...\n";
+	std::cout << "Printing a collection of numbers that have already been defined...\n";
 	for (auto x : my_little_list) {
 		std::cout << x << '\n';
 	}

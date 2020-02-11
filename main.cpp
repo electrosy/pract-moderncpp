@@ -1,16 +1,17 @@
 #include "Record.h"
-#include "Rand_int.h" /* TODO put all the rand stuff in its class */
+#include "Rand_int.h"
 
 #include <iostream>
-#include <iomanip>
 #include <vector>
-#include <random>
-#include <chrono>
+#include <random> //needed for get_rand_ints()
+#include <chrono> //used for printing the date and time
 
+/* First and last names */
+std::vector<std::string> MaleFirstNames {"Steven","David","Michael","Aaron","Daniel","John","Ryan"};
+std::vector<std::string> FemaleFirstNames {"Mariana","Sandra","Suzanne","Amanda","Kristina","Davina","Sunshine"};
+std::vector<std::string> LastNames {"Philley","Kelly","Holt","Hunter","Smith","Johnson","Wood"};
 
-/* TODO */
-// * enums for firstnames, last names
-
+/* A function that runs a lambda expression */
 void lambda_test(const std::vector<int> &vn, void(*func)(int)) {
 	for (int v : vn) {
 		func(v);
@@ -37,7 +38,12 @@ void print_numbers() {
 
 
 /* TODO a function that creates a random name using a list of first and last names */
+std::string get_name(bool female, int indexFirst, int indexLast) {
 
+	std::string firstName = female ? FemaleFirstNames[indexFirst] : MaleFirstNames[indexFirst];
+	return firstName + " " + LastNames[indexLast];
+
+}
 
 /* Use the Rand_int object to return a random int. */
 std::vector<int> get_rand_ints() {
@@ -59,15 +65,35 @@ std::vector<int> get_rand_ints() {
     std::cout << std::put_time(std::localtime(&t_c), "%F %T");
 }
 
+void generate_rand_records(int qty, std::vector<ley::Record> &v) {
+
+	ley::Rand_int rand1to100(1,100); // for employee num
+	ley::Rand_int rand1to6(1,6); //for first and last names.
+	ley::Rand_int rand1to2(1,2); // for gender
+
+	for(int i = 0; i<qty; ++i) {
+
+		std::string gender = (rand1to2() == 1) ? "f" : "m";
+		std::string firstName = gender == "f" ? FemaleFirstNames[rand1to6()] : MaleFirstNames[rand1to6()];
+		std::string lastName = LastNames[rand1to6()];
+		ley::Record r(gender, rand1to100(), firstName, lastName);
+		v.push_back(r);
+	}
+}
+
 int main() {
 	std::cout << "Version: 0.05\n";
 	std::cout << "This small program demenstrats the use of modern C++ concepts\n";
 
 
-	/* Create a Record object */
-	ley::Record myRecord;
-	/* Print the record using operator<< */
-	std::cout << myRecord << "\n";
+	std::vector<ley::Record> vRecords;
+	generate_rand_records(10, vRecords);
+	std::cout << "Outputting records generated...\n";
+
+	for(auto rec : vRecords) {
+		std::cout << rec << "\n";
+	}
+
 
 	std::cout<< "Printing 10 random numbers using the helper function...\n";
 	std::vector<int> randoms = get_rand_ints();
@@ -106,5 +132,12 @@ int main() {
 	std::cout << "\n";
 
 
+/*
+	std::cout << "Printing 10 random names...\n";
+	for(auto i=0;i<10;++i) {
+		std::cout << get_name(true,myRandObject(),myRandObject()) << "\n";
+	}
+*/
+	
 	return 1;
 }

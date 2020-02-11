@@ -2,6 +2,8 @@
 
 A space to practice modern C++ concepts
 
+This small program creates a set of random records and displays them out to the console.
+
 ## Modern C++ Concepts
 
 auto(matic) type deduction

@@ -6,6 +6,8 @@ ley::Record::Record(std::string gender, int num, std::string firstName, std::str
 	this->gender = (gender=="m" || gender=="f") ? gender : "n";
 	this->firstName = firstName;
 	this->lastName = lastName;
+
+	this->copied = 0;
 }
 
 ley::Record::~Record() {
@@ -32,16 +34,39 @@ std::string ley::Record::getFirstName() const {
 std::string ley::Record::getLastName() const {
 	return this->lastName;
 }
+bool ley::Record::getCopied() const {
+	return this->copied;
+}
 
 /* Functions */
-void ley::Record::test_func() {
-	std::cout << "Inside test_func\n";
+
+/* Copy */
+void ley::Record::copy_logic(const Record& a) { //modifies self
+	this->num =a.num;
+	this->employeeId=a.employeeId;
+	this->gender=a.gender;
+	this->firstName=a.firstName;
+	this->lastName=a.lastName;
+
+	this->copied = 1;
 }
+
+ley::Record::Record(const Record& a) {
+	this->copy_logic(a);
+}
+
+ley::Record& ley::Record::operator=(const Record& a) {
+	this->copy_logic(a);
+	
+	return *this;
+}
+
+/* Move */
 
 /* Operators */
 std::ostream& ley::operator<<(std::ostream& os, const ley::Record& rc) {
 	os << "Record Number: " << rc.getNum() << " Record Name: " << rc.getName() 
-		<< " Gender:" << rc.getGender();
+		<< " Gender:" << rc.getGender() << " Copied: " << rc.getCopied();
 	return os;
 }
 

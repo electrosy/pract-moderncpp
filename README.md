@@ -14,7 +14,7 @@ Initilizer Lists,direct-list-initialization
 
 Lambda Expressions
 
-Move Semantics
+Move Semantics, std::move(), (&& == rvalue reference)
 
 ## Modern C++ Utilities
 

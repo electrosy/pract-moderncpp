@@ -9,7 +9,7 @@
 /* First and last names */
 std::vector<std::string> MaleFirstNames {"Steven","David","Michael","Aaron","Daniel","John","Ryan"};
 std::vector<std::string> FemaleFirstNames {"Mariana","Sandra","Suzanne","Amanda","Kristina","Davina","Sunshine"};
-std::vector<std::string> LastNames {"Philley","Kelly","Holt","Hunter","Smith","Johnson","Wood"};
+std::vector<std::string> LastNames {"Philley","Kelly","Jolt","Hunted","Smith","Johnson","Wood"};
 
 /* A function that runs a lambda expression */
 void lambda_test(const std::vector<int> &vn, void(*func)(int)) {
@@ -34,13 +34,10 @@ void print_numbers() {
 	std::cout << "\n";
 }
 
-/* TODO a function that creates a random set of records */
-
-
 /* TODO a function that creates a random name using a list of first and last names */
 std::string get_name(bool female, int indexFirst, int indexLast) {
-
 	std::string firstName = female ? FemaleFirstNames[indexFirst] : MaleFirstNames[indexFirst];
+	
 	return firstName + " " + LastNames[indexLast];
 
 }
@@ -59,25 +56,27 @@ std::vector<int> get_rand_ints() {
 	return v;
 }
 
- void print_time() {
+void print_time() {
 	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
     std::time_t t_c = std::chrono::system_clock::to_time_t(now);
     std::cout << std::put_time(std::localtime(&t_c), "%F %T");
 }
 
+/* create a random set of records */
 void generate_rand_records(int qty, std::vector<ley::Record> &v) {
-
 	ley::Rand_int rand1to100(1,100); // for employee num
 	ley::Rand_int rand1to6(1,6); //for first and last names.
 	ley::Rand_int rand1to2(1,2); // for gender
 
-	for(int i = 0; i<qty; ++i) {
 
+	std::cout << "generating records...\n";
+	for(int i = 0; i<qty; ++i) {
 		std::string gender = (rand1to2() == 1) ? "f" : "m";
 		std::string firstName = gender == "f" ? FemaleFirstNames[rand1to6()] : MaleFirstNames[rand1to6()];
 		std::string lastName = LastNames[rand1to6()];
 		ley::Record r(gender, rand1to100(), firstName, lastName);
-		v.push_back(r);
+		std::cout << r <<"\n";
+		v.push_back(r); //record copy constructor called.
 	}
 }
 
@@ -88,12 +87,11 @@ int main() {
 
 	std::vector<ley::Record> vRecords;
 	generate_rand_records(10, vRecords);
-	std::cout << "Outputting records generated...\n";
+	std::cout << "Outputting records generated which have all been \"copied\" into a vector...\n";
 
 	for(auto rec : vRecords) {
 		std::cout << rec << "\n";
 	}
-
 
 	std::cout<< "Printing 10 random numbers using the helper function...\n";
 	std::vector<int> randoms = get_rand_ints();
@@ -118,7 +116,6 @@ int main() {
 	}
 	std::cout << "\n";
 
-
 	std::cout<< "The time is:";
 	print_time();
 	std::cout << "\n";
@@ -131,13 +128,5 @@ int main() {
 	lambda_test(vn, [](int v) {std::cout << v << " ";});
 	std::cout << "\n";
 
-
-/*
-	std::cout << "Printing 10 random names...\n";
-	for(auto i=0;i<10;++i) {
-		std::cout << get_name(true,myRandObject(),myRandObject()) << "\n";
-	}
-*/
-	
 	return 1;
 }

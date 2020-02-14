@@ -87,7 +87,7 @@ void generate_rand_records(int qty, std::vector<ley::Record> &v) {
 		std::string lastName = LastNames[rand1to6()];
 		ley::Record r(gender, rand1to100(), firstName, lastName);
 		std::cout << r <<"\n";
-		v.push_back(r); //record copy constructor called.
+		v.push_back(r); //Record copy constructor called.
 	}
 }
 
@@ -104,7 +104,6 @@ int main() {
 
 	std::cout << "Outputting records generated which have all been \"moved\" into a container...\n";
 	ley::Record vMovedRecords[10];
-	
 	for(auto i=0;i<vRecords.size();++i) { //move records
 		vMovedRecords[i] = std::move(vRecords[i]);
 	}

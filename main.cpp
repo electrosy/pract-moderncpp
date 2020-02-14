@@ -1,3 +1,14 @@
+/* 
+
+Author: Steven Philley
+Purpose: Test the Record objects and show off some modern C++ concepts.
+Date: Feb/12/2020
+
+*/
+
+
+
+
 #include "Record.h"
 #include "Rand_int.h"
 
@@ -84,13 +95,22 @@ int main() {
 	std::cout << "Version: 0.05\n";
 	std::cout << "This small program demenstrats the use of modern C++ concepts\n";
 
-
 	std::vector<ley::Record> vRecords;
 	generate_rand_records(10, vRecords);
 	std::cout << "Outputting records generated which have all been \"copied\" into a vector...\n";
-
 	for(auto rec : vRecords) {
 		std::cout << rec << "\n";
+	}
+
+	std::cout << "Outputting records generated which have all been \"moved\" into a container...\n";
+	ley::Record vMovedRecords[10];
+	
+	for(auto i=0;i<vRecords.size();++i) { //move records
+		vMovedRecords[i] = std::move(vRecords[i]);
+	}
+	
+	for(auto i = 0; i < 10; ++i) { //print out moved records
+		std::cout << vMovedRecords[i] << "\n";
 	}
 
 	std::cout<< "Printing 10 random numbers using the helper function...\n";

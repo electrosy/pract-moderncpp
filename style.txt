@@ -2,7 +2,7 @@ UpperCamelCase : Classes
 
 lowerCamelCase : Member Functions, Local Variables
 
-snake_case : helper functions
+snake_case : helper functions, private member functions (their usually helpers anyway)
 
 All custom functions and classes go into a custom namespace.
 
@@ -16,3 +16,6 @@ Alphabetical, see what then how
 private:
 protected:
 public:
+
+
+Author: Steven Philley

@@ -32,6 +32,9 @@ private:
 	void copy_logic(const Record&);
 	void re_move(Record&&); //set the r-value to be some form of 'indeterminate';
 
+	/* RAII */
+	void init();
+
 public:
 	/* Accessors */
 	int getNum() const;
@@ -43,7 +46,6 @@ public:
 	bool getMoved() const;
 
 	/* RAII */
-	void init();
 	Record();
 	Record(std::string, int, std::string, std::string);
 	~Record();
@@ -55,6 +57,7 @@ public:
 	/* Move */
 	Record(Record&& a);
 	Record& operator=(Record&& a);
+	
 };
 
 /* Operators */

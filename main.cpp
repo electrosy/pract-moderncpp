@@ -36,6 +36,7 @@ void print_numbers() {
 		std::cout << x << ' ';
 	}
 	std::cout << "\n";
+	
 
 	std::vector<int> my_little_list {5,15,25,35,45,55,65,75,85};
 	std::cout << "Printing a collection of numbers that have already been defined...\n";
@@ -118,7 +119,6 @@ int main() {
 		std::cout << std::to_string(v) << " ";
 	}
 	std::cout << "\n";
-
 
 	std::cout<< "Printing 10 random numbers using the Rand_int object...\n";
 	ley::Rand_int myRandObject(1,6);
